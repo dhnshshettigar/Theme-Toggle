@@ -4,23 +4,27 @@ import {IconContext} from "react-icons";
 
 const Header = () => {
     const lightTheme = {
-        backgroundColor: 'white',
-        color: 'black'
+        headerBackgroundColor: 'white',
+        headerColor: 'black',
+        bodyBackgroundColor: 'white',
+        bodyColor: 'black'
     }
     const darkTheme ={
-        backgroundColor: 'black',
-        color: 'white'
+        headerBackgroundColor: '#333', // Darker gray for header
+        headerColor: 'white',
+        bodyBackgroundColor: 'black',
+        bodyColor: 'white'
     }
     const [lightMode, setLightMode] = useState(true);
     const [theme, setTheme] = useState(lightTheme);
 
     useEffect(() => {
-        document.body.style.backgroundColor = lightMode ? lightTheme.backgroundColor : darkTheme.backgroundColor;
-        document.body.style.color = lightMode ? lightTheme.color : darkTheme.color;
+        document.body.style.backgroundColor = lightMode ? lightTheme.bodyBackgroundColor : darkTheme.bodyBackgroundColor;
+        document.body.style.color = lightMode ? lightTheme.bodyColor : darkTheme.bodyColor;
     },[lightMode])
 
     return (
-        <div className="flex justify-between items-center p-5 " style={theme}>
+        <div className="flex justify-between items-center p-5 " style={{backgroundColor: theme.headerBackgroundColor, color: theme.headerColor}}>
             <h1 className="text-3xl" >ThemeToggle</h1>
             <IconContext.Provider value={{ className: "text-2xl" }}>
                 <button onClick={
